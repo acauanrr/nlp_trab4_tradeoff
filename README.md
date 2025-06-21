@@ -34,6 +34,14 @@ Este projeto implementa um pipeline completo para o **fine-tuning** do modelo `m
 
 ---
 
+
+> 📥 **Importante:** Antes de iniciar o pipeline, baixe e descompacte o dataset do projeto (Spider + MMLU subset) disponível em:
+
+[https://drive.google.com/file/d/1FC5IgvTHKMSDvGW47HPifwY7RsFt8SS8/view?usp=drive_link](https://drive.google.com/file/d/1FC5IgvTHKMSDvGW47HPifwY7RsFt8SS8/view?usp=drive_link)
+
+Após o download, descompacte o conteúdo diretamente na **raiz do projeto**, de forma que a pasta `/data` esteja presente no mesmo nível do `README.md`.
+
+
 ## 2. Setup do Ambiente
 
 ### Pré-requisitos:
@@ -45,8 +53,8 @@ Este projeto implementa um pipeline completo para o **fine-tuning** do modelo `m
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/acauanrr/nlp_trab4_tradeoff.git
-cd nlp_trab4_tradeoff
+git clone <URL_DO_SEU_REPOSITORIO>
+cd <NOME_DA_PASTA_DO_PROJETO>
 ```
 
 2. Crie e ative um ambiente virtual:
