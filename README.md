@@ -45,7 +45,7 @@ Este projeto implementa um pipeline completo para o **fine-tuning** do modelo `m
 
 1. Clone o repositório:
 ```bash
-git clone [https://github.com/acauanrr/nlp_trab4_tradeoff.git](https://github.com/acauanrr/nlp_trab4_tradeoff.git)
+git clone https://github.com/acauanrr/nlp_trab4_tradeoff.git
 cd nlp_trab4_tradeoff
 ```
 
