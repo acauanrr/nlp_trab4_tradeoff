@@ -1,5 +1,7 @@
 # Análise Quantitativa do Trade-off entre Especialização e Generalização em LLMs via Fine-Tuning
 
+🔗 **[Acesse o notebook no Google Colab](https://colab.research.google.com/drive/1EOtC8O84xTV0062KKlmNGfNHs5b_WbFV?usp=sharing)**
+
 Este repositório contém o código e os resultados do quarto trabalho prático para as disciplinas ICC220 e PPGINF528 da Universidade Federal do Amazonas (UFAM).
 
 **Aluno**: Acauan C. Ribeiro
