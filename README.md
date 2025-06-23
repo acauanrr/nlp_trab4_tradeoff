@@ -1,174 +1,177 @@
-# Análise Quantitativa do Trade-off entre Especialização e Generalização em LLMs
+# Análise Quantitativa do Trade-off entre Especialização e Generalização em LLMs via Fine-Tuning
 
-Este projeto implementa um pipeline completo para o **fine-tuning** do modelo `meta-llama/Meta-Llama-3-8B-Instruct` na tarefa de **Text-to-SQL**, utilizando o dataset **Spider**. O objetivo é quantificar o ganho de performance na tarefa especializada e, ao mesmo tempo, medir a regressão em tarefas de conhecimento geral (MMLU), fornecendo uma análise crítica do *trade-off* entre **especialização e generalização** em LLMs.
+Este repositório contém o código e os resultados do quarto trabalho prático para as disciplinas ICC220 e PPGINF528 da Universidade Federal do Amazonas (UFAM).
+
+**Aluno**: Acauan C. Ribeiro
 
 ---
 
-## 1. Estrutura do Projeto
+## 1. Objetivo do Projeto
+
+O objetivo central deste projeto foi avaliar empiricamente o processo de fine-tuning em Modelos de Linguagem de Grande Porte (LLMs) para a tarefa de Text-to-SQL. A análise quantifica o ganho de desempenho na tarefa-alvo (usando o dataset Spider) e, simultaneamente, mede a alteração de performance em tarefas de conhecimento geral (usando o dataset MMLU), investigando o trade-off de especialização vs. generalização.
+
+---
+
+## 2. Estrutura do Repositório
 
 ```
-/
+.
 ├── configs/
-│   ├── lora_config_1.json
-│   └── lora_config_2.json
+│   ├── lora_config_1.json           # Hiperparâmetros para o 1º treino
+│   └── lora_config_2.json           # Hiperparâmetros para o 2º treino
 ├── custom_metrics/
-│   └── execution_accuracy.py
+│   └── execution_accuracy.py  # Métrica customizada para DeepEval
+├── notebooks/
+│   └── nlp_proj4_new.ipynb          # Notebook Colab utilizado para orquestrar os experimentos
 ├── data/
-│   ├── mmlu_subset/
-│   │   └── mmlu_150_eval.jsonl
-│   └── spider/
-│       ├── database/
-│       ├── dev.json
-│       ├── tables.json
-│       └── train.json
+│   ├── spider/
+│   │   ├── train_formatted.jsonl  # Dataset de treino pré-processado
+│   │   └── ... (outros arquivos do Spider)
+│   └── mmlu_subset/
+│       └── mmlu_150_eval.jsonl    # Subset de avaliação do MMLU
 ├── results/
-│   └── (outputs dos modelos serão salvos aqui)
+│   ├── lora_config_1/             # Artefatos do treino 1 (checkpoints, etc)
+│   ├── lora_config_2/             # Artefatos do treino 2 (checkpoints, etc)
+│   └── ... (arquivos .json com as predições)
 ├── scripts/
-│   ├── preprocess_spider.py
-│   ├── train_lora.py
-│   ├── eval_spider.py
-│   └── eval_mmlu.py
-├── requirements.txt
-└── README.md
+│   ├── preprocess_spider.py     # Script para formatar o dataset Spider
+│   ├── train_lora.py            # Script para o fine-tuning com LoRA
+│   ├── eval_spider.py           # Script para avaliação no Spider com a métrica customizada
+│   └── eval_mmlu.py             # Script para avaliação no MMLU
+├── data.zip                     # Arquivo que deve ser descompactado /data
+├── requirements.txt             # Dependências do projeto
+└── README.md                    # Este arquivo
 ```
 
 ---
 
+## 3. Como Reproduzir os Resultados
 
-> 📥 **Importante:** Antes de iniciar o pipeline, baixe e descompacte o dataset do projeto (Spider + MMLU subset) disponível em:
+Para reproduzir todos os experimentos, siga os passos abaixo. Recomenda-se o uso de um ambiente com GPU (e.g., Google Colab com GPU T4 ou superior).
 
-[https://drive.google.com/file/d/1FC5IgvTHKMSDvGW47HPifwY7RsFt8SS8/view?usp=drive_link](https://drive.google.com/file/d/1FC5IgvTHKMSDvGW47HPifwY7RsFt8SS8/view?usp=drive_link)
+### Passo 1: Configuração do Ambiente
 
-Após o download, descompacte o conteúdo diretamente na **raiz do projeto**, de forma que a pasta `/data` esteja presente no mesmo nível do `README.md`.
+**Clone o repositório:**
 
-
-## 2. Setup do Ambiente
-
-### Pré-requisitos:
-- Python 3.9+
-- NVIDIA GPU com suporte a CUDA (recomendado VRAM ≥ 12GB para QLoRA)
-- `git` e `git-lfs` instalados
-
-### Passos:
-
-1. Clone o repositório:
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd <NOME_DA_PASTA_DO_PROJETO>
+git clone https://github.com/acauanrr/nlp_trab4_tradeoff.git
+cd nlp_trab4_tradeoff
 ```
 
-2. Crie e ative um ambiente virtual:
-```bash
-python -m venv .venv
+**Instale as dependências com as versões exatas para garantir a reprodutibilidade:**
 
-# Windows
-.\.venv\Scriptsctivate
-
-# Linux/macOS
-source .venv/bin/activate
-```
-
-3. Instale as dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-> **Nota**: Se estiver no Windows e encontrar erros com `bitsandbytes`, consulte soluções com versões pré-compiladas. Os scripts já estão adaptados para contornar o problema, se necessário.
+**Faça o download e descompacte os dados do Spider:**
 
-4. Autentique-se no Hugging Face:
 ```bash
-huggingface-cli login
+# O arquivo data.zip já está no repositório
+unzip -q data.zip -d .
 ```
-> Você precisará de um token com acesso ao modelo Llama-3.
 
-5. Baixe os dados:
-- Para o Spider: certifique-se de ter os arquivos `train.json`, `dev.json`, `tables.json` e o diretório `database/` em `data/spider/`.
-- Para o MMLU: coloque `mmlu_150_eval.jsonl` em `data/mmlu_subset/`.
+**Autentique-se no Hugging Face para baixar o modelo Llama-3:**
+
+*No seu script ou notebook, execute:*
+
+```python
+from huggingface_hub import notebook_login
+notebook_login()
+# Cole seu token de acesso quando solicitado
+```
 
 ---
 
-## 3. Pipeline de Execução End-to-End
+### Passo 2: Pré-processamento dos Dados
 
-### 🔹 Passo 1: Pré-processar os Dados do Spider
+Formate o dataset Spider para o padrão de chat utilizado no treinamento.
+
 ```bash
 python scripts/preprocess_spider.py
 ```
-> Gera `train_formatted.jsonl` e `dev_formatted.jsonl` em `data/spider/`.
+
+Isso irá gerar o arquivo `data/spider/train_formatted.jsonl`, que será usado na próxima etapa.
 
 ---
 
-### 🔹 Passo 2: Avaliar o Modelo Base (Baseline - sem Fine-Tuning)
+### Passo 3: Treinamento (Fine-Tuning)
+
+Foram testadas duas configurações de hiperparâmetros distintas. Para treinar cada modelo, execute os seguintes comandos:
+
+**Treinamento com a Configuração 1 (`lora_config_1.json`):**
+
 ```bash
-python scripts/eval_spider.py --mode baseline --output_file results/baseline_spider_outputs.json --max_samples 20
+python scripts/train_lora.py     --config_file lora_config_1.json     --output_base_dir results     --maxsteps 2048
 ```
-> Mede a `ExecutionAccuracy` em 20 amostras. Relatório salvo em `results/baseline_spider_outputs_report.json`.
+
+**Treinamento com a Configuração 2 (`lora_config_2.json`):**
+
+```bash
+python scripts/train_lora.py     --config_file lora_config_2.json     --output_base_dir results     --maxsteps 2048
+```
+
+Ao final, os adaptadores LoRA estarão salvos em `results/lora_config_1/final_adapter` e `results/lora_config_2/final_adapter`.
 
 ---
 
-### 🔹 Passo 3: Treinar os Modelos com LoRA
+### Passo 4: Avaliação
 
-#### Configuração 1:
+#### 4.1 Avaliação na Tarefa-Alvo (Spider)
+
+Para avaliar o modelo base e os modelos fine-tuned no dataset Spider, execute os seguintes comandos. Os resultados da métrica **Execution Accuracy** serão impressos no console, e as predições em SQL serão salvas nos arquivos `.json` especificados.
+
+**Avaliação do Modelo Base:**
+
 ```bash
-python scripts/train_lora.py --config_file configs/lora_config_1.json
+python scripts/eval_spider.py     --mode baseline     --output_file results/spider_baseline_preds.json     --batch_size 8
 ```
 
-#### Configuração 2:
+**Avaliação do Modelo Fine-Tuned (Config 1):**
+
 ```bash
-python scripts/train_lora.py --config_file configs/lora_config_2.json
+python scripts/eval_spider.py     --mode finetuned     --lora_adapter_path results/lora_config_1/final_adapter     --output_file results/spider_finetuned_preds_1.json     --batch_size 8
 ```
 
-> Adaptadores são salvos em:  
-> `results/lora_config_1/final_adapter/`  
-> `results/lora_config_2/final_adapter/`
+**Avaliação do Modelo Fine-Tuned (Config 2):**
 
----
-
-### 🔹 Passo 4: Avaliar os Modelos Fine-Tuned (Text-to-SQL)
-
-#### Avaliação da Configuração 1:
 ```bash
-python scripts/eval_spider.py --mode finetuned --lora_adapter_path results/lora_config_1/final_adapter/ --output_file results/finetuned_config1_outputs.json --max_samples 20
+python scripts/eval_spider.py     --mode finetuned     --lora_adapter_path results/lora_config_2/final_adapter     --output_file results/spider_finetuned_preds_2.json     --batch_size 8
 ```
 
-#### Avaliação da Configuração 2:
-```bash
-python scripts/eval_spider.py --mode finetuned --lora_adapter_path results/lora_config_2/final_adapter/ --output_file results/finetuned_config2_outputs.json --max_samples 20
-```
+#### 4.2 Avaliação de Generalização (MMLU)
 
----
+Para medir a regressão (ou ganho) de capacidade, avalie os três modelos no nosso subset do MMLU.
 
-### 🔹 Passo 5: Medir a Regressão de Capacidade (MMLU)
+**Avaliação do Modelo Base:**
 
-#### Baseline no MMLU:
 ```bash
 python scripts/eval_mmlu.py
 ```
 
-#### Configuração 1 no MMLU:
+**Avaliação do Modelo Fine-Tuned (Config 1):**
+
 ```bash
-python scripts/eval_mmlu.py --lora_adapter_path results/lora_config_1/final_adapter/
+python scripts/eval_mmlu.py --lora_adapter_path results/lora_config_1/final_adapter
 ```
 
-#### Configuração 2 no MMLU:
+**Avaliação do Modelo Fine-Tuned (Config 2):**
+
 ```bash
-python scripts/eval_mmlu.py --lora_adapter_path results/lora_config_2/final_adapter/
+python scripts/eval_mmlu.py --lora_adapter_path results/lora_config_2/final_adapter
 ```
 
 ---
 
-## 📊 Objetivo Final
+## 4. Análise dos Resultados
 
-Com os resultados em mãos, você poderá comparar:
+A análise completa dos resultados, incluindo as tabelas comparativas e a discussão sobre o trade-off, está detalhada no relatório técnico em PDF. Os principais achados são:
 
-- **Ganho de especialização**: Aumento na `ExecutionAccuracy` no dataset Spider.
-- **Perda de generalização**: Redução na performance no subset do MMLU.
+- **Ganho de Especialização**:  
+  O fine-tuning com LoRA resultou em um ganho massivo de performance na tarefa de Text-to-SQL, com a acurácia de execução saltando de **9.17% (modelo base)** para **60.83% (ambos os modelos fine-tuned)**.
 
-Esses dados permitem uma análise crítica sobre o impacto da especialização em LLMs e o fenômeno do esquecimento catastrófico.
+- **Trade-off de Generalização**:  
+  Surpreendentemente, não foi observado o fenômeno de *"esquecimento catastrófico"*. Pelo contrário, ambos os modelos fine-tuned demonstraram uma melhora na performance no teste de conhecimento geral MMLU.  
+  O modelo da `config_1` (r=16) teve um ganho de acurácia de **+261%**, enquanto o da `config_2` (r=32) teve um ganho de **+185%** em relação ao baseline.
 
----
-
-## 📌 Créditos
-
-Este projeto foi desenvolvido por [Acauan C. Ribeiro](https://github.com/acauanrr) para fins de experimentação acadêmica no contexto de *fine-tuning* e avaliação de Large Language Models.
-
----
+Esses resultados sugerem que, para o **Llama-3** em conjunto com a técnica **PEFT LoRA**, a especialização em uma tarefa de raciocínio complexo como **Text-to-SQL** pode, na verdade, **aprimorar as capacidades lógicas gerais do modelo**, em vez de degradá-las.
