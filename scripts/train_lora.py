@@ -89,7 +89,7 @@ def main(args):
         fp16=True,
         seed=args.seed,
         report_to="none",
-        max_steps=400,              # Otimização para agilizar o treinamento
+        max_steps=args.maxsteps,              # Otimização para agilizar o treinamento
         
         # Parâmetros específicos do SFT agora são passados aqui:
         dataset_text_field="text",
@@ -120,6 +120,7 @@ if __name__ == "__main__":
     parser.add_argument("--config_file", type=str, required=True, help="Caminho para o arquivo de configuração JSON dos hiperparâmetros.")
     parser.add_argument("--dataset_path", type=str, default="data/spider/train_formatted.jsonl", help="Caminho para o dataset de treino formatado.")
     parser.add_argument("--output_base_dir", type=str, default="results", help="Diretório base para salvar os resultados do treino.")
+    parser.add_argument("--maxsteps", type=int, default=1000, help="Max steps para o treinamento.")
     parser.add_argument("--seed", type=int, default=42, help="Seed para reprodutibilidade.")
     
     args = parser.parse_args()

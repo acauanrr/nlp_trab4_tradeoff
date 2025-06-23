@@ -1,0 +1,122 @@
+/content/nlp_trab4_tradeoff
+2025-06-23 03:17:08.567077: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-06-23 03:17:08.585329: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1750648628.607075   58065 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1750648628.613700   58065 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-06-23 03:17:08.635231: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Carregando modelo base: meta-llama/Meta-Llama-3-8B-Instruct
+Loading checkpoint shards: 100% 4/4 [00:17<00:00,  4.44s/it]
+Configurando LoRA...
+trainable params: 83,886,080 || all params: 8,114,147,328 || trainable%: 1.0338
+Carregando dataset de: data/spider/train_formatted.jsonl
+average_tokens_across_devices is set to True but it is invalid when world size is1. Turn it to False automatically.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Iniciando o fine-tuning...
+  0% 0/2048 [00:00<?, ?it/s]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.9492, 'grad_norm': 0.8736956119537354, 'learning_rate': 9.996611922941748e-06, 'num_tokens': 42375.0, 'mean_token_accuracy': 0.7924937248229981, 'epoch': 0.01}
+{'loss': 0.6463, 'grad_norm': 0.6492342352867126, 'learning_rate': 9.985882183676631e-06, 'num_tokens': 84665.0, 'mean_token_accuracy': 0.8544775837659836, 'epoch': 0.03}
+{'loss': 0.5362, 'grad_norm': 0.6492403149604797, 'learning_rate': 9.967820677602977e-06, 'num_tokens': 128130.0, 'mean_token_accuracy': 0.8681833714246749, 'epoch': 0.04}
+{'loss': 0.4957, 'grad_norm': 0.9184494018554688, 'learning_rate': 9.942453964263483e-06, 'num_tokens': 168464.0, 'mean_token_accuracy': 0.8847580403089523, 'epoch': 0.06}
+{'loss': 0.4629, 'grad_norm': 1.181004524230957, 'learning_rate': 9.909819345547777e-06, 'num_tokens': 211684.0, 'mean_token_accuracy': 0.8890195834636688, 'epoch': 0.07}
+{'loss': 0.4287, 'grad_norm': 1.3531287908554077, 'learning_rate': 9.86996481083978e-06, 'num_tokens': 255730.0, 'mean_token_accuracy': 0.8952206295728683, 'epoch': 0.09}
+{'loss': 0.4333, 'grad_norm': 1.2889940738677979, 'learning_rate': 9.822948966449063e-06, 'num_tokens': 297711.0, 'mean_token_accuracy': 0.8995152562856674, 'epoch': 0.1}
+{'loss': 0.3667, 'grad_norm': 2.086013078689575, 'learning_rate': 9.768840949429952e-06, 'num_tokens': 338641.0, 'mean_token_accuracy': 0.9110422480106354, 'epoch': 0.11}
+ 10% 200/2048 [08:46<1:21:11,  2.64s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.3301, 'grad_norm': 1.4908347129821777, 'learning_rate': 9.707720325915105e-06, 'num_tokens': 383241.0, 'mean_token_accuracy': 0.9200334423780441, 'epoch': 0.13}
+{'loss': 0.3389, 'grad_norm': 2.6704344749450684, 'learning_rate': 9.63967697411309e-06, 'num_tokens': 422020.0, 'mean_token_accuracy': 0.9156737047433853, 'epoch': 0.14}
+{'loss': 0.3129, 'grad_norm': 2.7640540599823, 'learning_rate': 9.564810952141992e-06, 'num_tokens': 462609.0, 'mean_token_accuracy': 0.9249229121208191, 'epoch': 0.16}
+{'loss': 0.2897, 'grad_norm': 2.3051624298095703, 'learning_rate': 9.4832323508934e-06, 'num_tokens': 501203.0, 'mean_token_accuracy': 0.9262321996688843, 'epoch': 0.17}
+{'loss': 0.2428, 'grad_norm': 2.6444027423858643, 'learning_rate': 9.395061132143168e-06, 'num_tokens': 540055.0, 'mean_token_accuracy': 0.9385888630151749, 'epoch': 0.19}
+{'loss': 0.2559, 'grad_norm': 1.1754841804504395, 'learning_rate': 9.300426952146952e-06, 'num_tokens': 580686.0, 'mean_token_accuracy': 0.9350387769937515, 'epoch': 0.2}
+{'loss': 0.1937, 'grad_norm': 2.1883506774902344, 'learning_rate': 9.199468970979998e-06, 'num_tokens': 623290.0, 'mean_token_accuracy': 0.9500035625696183, 'epoch': 0.21}
+{'loss': 0.1615, 'grad_norm': 1.5336874723434448, 'learning_rate': 9.092335647901493e-06, 'num_tokens': 663455.0, 'mean_token_accuracy': 0.9520127445459365, 'epoch': 0.23}
+ 20% 400/2048 [17:37<1:14:18,  2.71s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.1617, 'grad_norm': 0.9288661479949951, 'learning_rate': 8.979184523044419e-06, 'num_tokens': 704614.0, 'mean_token_accuracy': 0.9550940942764282, 'epoch': 0.24}
+{'loss': 0.1588, 'grad_norm': 2.1511542797088623, 'learning_rate': 8.860181985751923e-06, 'num_tokens': 749233.0, 'mean_token_accuracy': 0.9564562410116195, 'epoch': 0.26}
+{'loss': 0.1424, 'grad_norm': 0.8566864132881165, 'learning_rate': 8.735503029900901e-06, 'num_tokens': 792177.0, 'mean_token_accuracy': 0.9596704530715943, 'epoch': 0.27}
+{'loss': 0.1218, 'grad_norm': 1.3729723691940308, 'learning_rate': 8.60533099657254e-06, 'num_tokens': 837679.0, 'mean_token_accuracy': 0.9624527257680893, 'epoch': 0.29}
+{'loss': 0.145, 'grad_norm': 2.0611159801483154, 'learning_rate': 8.46985730444827e-06, 'num_tokens': 877918.0, 'mean_token_accuracy': 0.9562576639652253, 'epoch': 0.3}
+{'loss': 0.1588, 'grad_norm': 2.4324958324432373, 'learning_rate': 8.32928116832755e-06, 'num_tokens': 915901.0, 'mean_token_accuracy': 0.9567792195081711, 'epoch': 0.31}
+{'loss': 0.1342, 'grad_norm': 0.7201505899429321, 'learning_rate': 8.183809306181422e-06, 'num_tokens': 955221.0, 'mean_token_accuracy': 0.9611119270324707, 'epoch': 0.33}
+{'loss': 0.1471, 'grad_norm': 1.196536898612976, 'learning_rate': 8.033655635172624e-06, 'num_tokens': 993869.0, 'mean_token_accuracy': 0.9590100312232971, 'epoch': 0.34}
+ 29% 600/2048 [26:28<1:03:02,  2.61s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.1334, 'grad_norm': 0.8206768035888672, 'learning_rate': 7.879040957089229e-06, 'num_tokens': 1031412.0, 'mean_token_accuracy': 0.9626555871963501, 'epoch': 0.36}
+{'loss': 0.1335, 'grad_norm': 0.695022702217102, 'learning_rate': 7.72019263365442e-06, 'num_tokens': 1073429.0, 'mean_token_accuracy': 0.962607918381691, 'epoch': 0.37}
+{'loss': 0.1202, 'grad_norm': 0.8100755214691162, 'learning_rate': 7.557344252189854e-06, 'num_tokens': 1115470.0, 'mean_token_accuracy': 0.9638217616081238, 'epoch': 0.39}
+{'loss': 0.1131, 'grad_norm': 2.1896255016326904, 'learning_rate': 7.390735282124216e-06, 'num_tokens': 1157268.0, 'mean_token_accuracy': 0.9650107586383819, 'epoch': 0.4}
+{'loss': 0.1215, 'grad_norm': 0.7105951309204102, 'learning_rate': 7.220610722852147e-06, 'num_tokens': 1198327.0, 'mean_token_accuracy': 0.9637605875730515, 'epoch': 0.41}
+{'loss': 0.1149, 'grad_norm': 1.548460602760315, 'learning_rate': 7.047220743461289e-06, 'num_tokens': 1238882.0, 'mean_token_accuracy': 0.9666904389858246, 'epoch': 0.43}
+{'loss': 0.1032, 'grad_norm': 1.3284006118774414, 'learning_rate': 6.870820314857291e-06, 'num_tokens': 1279651.0, 'mean_token_accuracy': 0.9682102543115616, 'epoch': 0.44}
+{'loss': 0.1013, 'grad_norm': 0.5859804749488831, 'learning_rate': 6.691668834827707e-06, 'num_tokens': 1324574.0, 'mean_token_accuracy': 0.9688268929719925, 'epoch': 0.46}
+ 39% 800/2048 [35:17<54:42,  2.63s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.1175, 'grad_norm': 0.5652351975440979, 'learning_rate': 6.510029746596141e-06, 'num_tokens': 1363957.0, 'mean_token_accuracy': 0.9652270328998566, 'epoch': 0.47}
+{'loss': 0.1081, 'grad_norm': 1.0106207132339478, 'learning_rate': 6.32617015142756e-06, 'num_tokens': 1403169.0, 'mean_token_accuracy': 0.968692929148674, 'epoch': 0.49}
+{'loss': 0.0958, 'grad_norm': 1.2823703289031982, 'learning_rate': 6.14036041585443e-06, 'num_tokens': 1445489.0, 'mean_token_accuracy': 0.9694309478998184, 'epoch': 0.5}
+{'loss': 0.1104, 'grad_norm': 0.8335973620414734, 'learning_rate': 5.952873774101265e-06, 'num_tokens': 1487985.0, 'mean_token_accuracy': 0.9671770048141479, 'epoch': 0.51}
+{'loss': 0.1019, 'grad_norm': 0.9056606292724609, 'learning_rate': 5.763985926292217e-06, 'num_tokens': 1532860.0, 'mean_token_accuracy': 0.9686677014827728, 'epoch': 0.53}
+{'loss': 0.0982, 'grad_norm': 0.518223226070404, 'learning_rate': 5.573974633032552e-06, 'num_tokens': 1578303.0, 'mean_token_accuracy': 0.9688667887449265, 'epoch': 0.54}
+{'loss': 0.1011, 'grad_norm': 1.2612320184707642, 'learning_rate': 5.383119306960158e-06, 'num_tokens': 1619107.0, 'mean_token_accuracy': 0.9686618977785111, 'epoch': 0.56}
+{'loss': 0.098, 'grad_norm': 0.334398478269577, 'learning_rate': 5.191700601867764e-06, 'num_tokens': 1663749.0, 'mean_token_accuracy': 0.9703825330734253, 'epoch': 0.57}
+ 49% 1000/2048 [44:10<46:49,  2.68s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.101, 'grad_norm': 1.5948734283447266, 'learning_rate': 5e-06, 'num_tokens': 1703397.0, 'mean_token_accuracy': 0.9717626857757569, 'epoch': 0.59}
+{'loss': 0.1076, 'grad_norm': 1.1698700189590454, 'learning_rate': 4.808299398132237e-06, 'num_tokens': 1742867.0, 'mean_token_accuracy': 0.9675963866710663, 'epoch': 0.6}
+{'loss': 0.103, 'grad_norm': 0.7835134267807007, 'learning_rate': 4.616880693039843e-06, 'num_tokens': 1781862.0, 'mean_token_accuracy': 0.9686015254259109, 'epoch': 0.61}
+{'loss': 0.0929, 'grad_norm': 0.5140458941459656, 'learning_rate': 4.42602536696745e-06, 'num_tokens': 1826839.0, 'mean_token_accuracy': 0.9710041016340256, 'epoch': 0.63}
+{'loss': 0.1037, 'grad_norm': 0.5674911737442017, 'learning_rate': 4.236014073707784e-06, 'num_tokens': 1867645.0, 'mean_token_accuracy': 0.969211739897728, 'epoch': 0.64}
+{'loss': 0.1099, 'grad_norm': 1.7871159315109253, 'learning_rate': 4.047126225898737e-06, 'num_tokens': 1906671.0, 'mean_token_accuracy': 0.9677890533208847, 'epoch': 0.66}
+{'loss': 0.0958, 'grad_norm': 0.62824946641922, 'learning_rate': 3.859639584145572e-06, 'num_tokens': 1950111.0, 'mean_token_accuracy': 0.96977095246315, 'epoch': 0.67}
+{'loss': 0.0964, 'grad_norm': 1.3316006660461426, 'learning_rate': 3.673829848572441e-06, 'num_tokens': 1992894.0, 'mean_token_accuracy': 0.9714182513952255, 'epoch': 0.69}
+ 59% 1200/2048 [53:01<36:56,  2.61s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.0993, 'grad_norm': 0.7022724747657776, 'learning_rate': 3.48997025340386e-06, 'num_tokens': 2036249.0, 'mean_token_accuracy': 0.9695027780532837, 'epoch': 0.7}
+{'loss': 0.0968, 'grad_norm': 0.6340713500976562, 'learning_rate': 3.308331165172294e-06, 'num_tokens': 2078239.0, 'mean_token_accuracy': 0.9692431563138961, 'epoch': 0.71}
+{'loss': 0.1002, 'grad_norm': 1.0656083822250366, 'learning_rate': 3.129179685142711e-06, 'num_tokens': 2118160.0, 'mean_token_accuracy': 0.9693409270048141, 'epoch': 0.73}
+{'loss': 0.0916, 'grad_norm': 0.4188378155231476, 'learning_rate': 2.9527792565387126e-06, 'num_tokens': 2159508.0, 'mean_token_accuracy': 0.9704707443714142, 'epoch': 0.74}
+{'loss': 0.1012, 'grad_norm': 0.37017297744750977, 'learning_rate': 2.7793892771478547e-06, 'num_tokens': 2202246.0, 'mean_token_accuracy': 0.9691299885511399, 'epoch': 0.76}
+{'loss': 0.0927, 'grad_norm': 1.1246497631072998, 'learning_rate': 2.609264717875785e-06, 'num_tokens': 2245318.0, 'mean_token_accuracy': 0.9715837454795837, 'epoch': 0.77}
+{'loss': 0.0889, 'grad_norm': 0.859793484210968, 'learning_rate': 2.442655747810148e-06, 'num_tokens': 2288551.0, 'mean_token_accuracy': 0.9711309552192688, 'epoch': 0.79}
+{'loss': 0.0904, 'grad_norm': 1.3633613586425781, 'learning_rate': 2.2798073663455806e-06, 'num_tokens': 2335825.0, 'mean_token_accuracy': 0.9721202492713928, 'epoch': 0.8}
+ 68% 1400/2048 [1:01:52<28:32,  2.64s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.0974, 'grad_norm': 0.9034919738769531, 'learning_rate': 2.1209590429107734e-06, 'num_tokens': 2375452.0, 'mean_token_accuracy': 0.9700916540622712, 'epoch': 0.81}
+{'loss': 0.1014, 'grad_norm': 0.42030009627342224, 'learning_rate': 1.9663443648273772e-06, 'num_tokens': 2414261.0, 'mean_token_accuracy': 0.9687314796447754, 'epoch': 0.83}
+{'loss': 0.1018, 'grad_norm': 1.2502175569534302, 'learning_rate': 1.8161906938185787e-06, 'num_tokens': 2453424.0, 'mean_token_accuracy': 0.9699463194608688, 'epoch': 0.84}
+{'loss': 0.0887, 'grad_norm': 0.653067409992218, 'learning_rate': 1.6707188316724526e-06, 'num_tokens': 2494888.0, 'mean_token_accuracy': 0.9709143912792206, 'epoch': 0.86}
+{'loss': 0.0932, 'grad_norm': 0.7034898400306702, 'learning_rate': 1.5301426955517312e-06, 'num_tokens': 2535890.0, 'mean_token_accuracy': 0.9711469900608063, 'epoch': 0.87}
+{'loss': 0.0832, 'grad_norm': 0.520668089389801, 'learning_rate': 1.3946690034274601e-06, 'num_tokens': 2580853.0, 'mean_token_accuracy': 0.9742168086767197, 'epoch': 0.89}
+{'loss': 0.1013, 'grad_norm': 0.6146277785301208, 'learning_rate': 1.2644969700991e-06, 'num_tokens': 2620038.0, 'mean_token_accuracy': 0.9670342350006104, 'epoch': 0.9}
+{'loss': 0.0931, 'grad_norm': 0.8061825037002563, 'learning_rate': 1.139818014248078e-06, 'num_tokens': 2661268.0, 'mean_token_accuracy': 0.9716362875699996, 'epoch': 0.91}
+ 78% 1600/2048 [1:10:43<19:45,  2.65s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.0952, 'grad_norm': 0.3206306993961334, 'learning_rate': 1.0208154769555828e-06, 'num_tokens': 2704846.0, 'mean_token_accuracy': 0.969348919391632, 'epoch': 0.93}
+{'loss': 0.0894, 'grad_norm': 0.40803879499435425, 'learning_rate': 9.076643520985068e-07, 'num_tokens': 2746472.0, 'mean_token_accuracy': 0.9700410461425781, 'epoch': 0.94}
+{'loss': 0.093, 'grad_norm': 0.3557839095592499, 'learning_rate': 8.005310290200025e-07, 'num_tokens': 2786865.0, 'mean_token_accuracy': 0.9715864634513856, 'epoch': 0.96}
+{'loss': 0.0918, 'grad_norm': 0.8543070554733276, 'learning_rate': 6.995730478530493e-07, 'num_tokens': 2828507.0, 'mean_token_accuracy': 0.9732035195827484, 'epoch': 0.97}
+{'loss': 0.0942, 'grad_norm': 0.4928230345249176, 'learning_rate': 6.049388678568325e-07, 'num_tokens': 2867302.0, 'mean_token_accuracy': 0.9717831230163574, 'epoch': 0.99}
+{'loss': 0.0924, 'grad_norm': 0.518426239490509, 'learning_rate': 5.167676491065987e-07, 'num_tokens': 2908757.0, 'mean_token_accuracy': 0.9727312326431274, 'epoch': 1.0}
+{'loss': 0.0851, 'grad_norm': 0.5759561657905579, 'learning_rate': 4.3518904785800896e-07, 'num_tokens': 2951619.0, 'mean_token_accuracy': 0.9725607907772065, 'epoch': 1.01}
+{'loss': 0.1003, 'grad_norm': 1.1023427248001099, 'learning_rate': 3.6032302588691115e-07, 'num_tokens': 2989795.0, 'mean_token_accuracy': 0.9698059052228928, 'epoch': 1.03}
+ 88% 1800/2048 [1:19:33<10:51,  2.63s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.0959, 'grad_norm': 0.7991437315940857, 'learning_rate': 2.9227967408489653e-07, 'num_tokens': 3027913.0, 'mean_token_accuracy': 0.970761188864708, 'epoch': 1.04}
+{'loss': 0.0859, 'grad_norm': 0.4109296202659607, 'learning_rate': 2.3115905057004895e-07, 'num_tokens': 3071877.0, 'mean_token_accuracy': 0.973351559638977, 'epoch': 1.06}
+{'loss': 0.0893, 'grad_norm': 0.9493884444236755, 'learning_rate': 1.7705103355093678e-07, 'num_tokens': 3113282.0, 'mean_token_accuracy': 0.9721735632419586, 'epoch': 1.07}
+{'loss': 0.0765, 'grad_norm': 0.6647546887397766, 'learning_rate': 1.3003518916022084e-07, 'num_tokens': 3160868.0, 'mean_token_accuracy': 0.9747232830524445, 'epoch': 1.09}
+{'loss': 0.0895, 'grad_norm': 0.7755248546600342, 'learning_rate': 9.018065445222379e-08, 'num_tokens': 3202495.0, 'mean_token_accuracy': 0.971053878068924, 'epoch': 1.1}
+{'loss': 0.1026, 'grad_norm': 0.866326630115509, 'learning_rate': 5.754603573651707e-08, 'num_tokens': 3241161.0, 'mean_token_accuracy': 0.9709552055597306, 'epoch': 1.11}
+{'loss': 0.1101, 'grad_norm': 0.8247657418251038, 'learning_rate': 3.217932239702348e-08, 'num_tokens': 3276473.0, 'mean_token_accuracy': 0.9662633788585663, 'epoch': 1.13}
+{'loss': 0.0849, 'grad_norm': 0.3691503703594208, 'learning_rate': 1.4117816323369615e-08, 'num_tokens': 3319497.0, 'mean_token_accuracy': 0.9714046573638916, 'epoch': 1.14}
+ 98% 2000/2048 [1:28:22<02:10,  2.72s/it]/usr/local/lib/python3.11/dist-packages/torch/_dynamo/eval_frame.py:745: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+{'loss': 0.087, 'grad_norm': 0.629410445690155, 'learning_rate': 3.3880770582522814e-09, 'num_tokens': 3359946.0, 'mean_token_accuracy': 0.9730489963293075, 'epoch': 1.16}
+{'train_runtime': 5431.3522, 'train_samples_per_second': 1.508, 'train_steps_per_second': 0.377, 'train_loss': 0.16322649852372706, 'num_tokens': 3393486.0, 'mean_token_accuracy': 0.9701796070389126, 'epoch': 1.17}
+100% 2048/2048 [1:30:31<00:00,  2.65s/it]
+Adaptador LoRA salvo em: results/lora_config_2/final_adapter

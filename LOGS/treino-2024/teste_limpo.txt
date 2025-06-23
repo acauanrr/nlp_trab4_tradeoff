@@ -1,0 +1,5001 @@
+A saída de streaming foi truncada nas últimas 5000 linhas.
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Find the name of the makers that produced some cars in the year of 1970?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of the different car makers who produced a car in 1970?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Find the make and production time of the cars that were produced in the earliest year?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: c.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the maker of the carr produced in the earliest year and what year was it?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT c.Maker, c.Year
+FROM cars_data c
+WHERE c.Year = (SELECT MIN(Year) FROM cars_data)
+  - expected output: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Which distinct car models are the produced after 1980?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What are the different models for the cards produced after 1980?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car makers are there in each continents? List the continent name and the count.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop"
+  - expected output: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of each continent and how many car makers are there in each one?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Which of the countries has the most car makers? List the country name.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of the country with the most car makers?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car models are produced by each maker ? Only list the count and the maker full name .
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname 
+FROM Performance AS T1 
+JOIN Band AS T2 ON T1.bandmate  =  T2.id 
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId 
+WHERE T3.Title  =  "Le Pop"
+  - expected output: select count(*) ,  t2.fullname from model_list as t1 join car_makers as t2 on t1.maker  =  t2.id group by t2.id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the number of car models that are produced by each maker and what is the id and full name of each maker?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT Count(*) ,  T2.FullName ,  T2.id FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the accelerate of the car make amc hornet sportabout (sw)?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+  - expected output: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How much does the car accelerate that makes amc hornet sportabout (sw)?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(3,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car makers are there in france?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT COUNT(*)
+FROM car_makers
+WHERE Country = 'France';
+  - expected output: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(3,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the number of makers of care in France?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT COUNT(DISTINCT car_makers.Country) AS num_makers
+FROM car_makers
+JOIN countries ON car_makers.Country = countries.CountryName
+WHERE countries.Continent = 'Europe' AND countries.CountryName = 'France';
+  - expected output: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(13,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car models are produced in the usa?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT COUNT(*) 
+FROM car_makers AS T1 
+JOIN model_list AS T2 ON T1.Id = T2.Maker 
+JOIN cars_data AS T3 ON T2.ModelId = T3.Id 
+WHERE T1.Country = 'USA';
+  - expected output: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: near "To": syntax error, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the count of the car models produced in the United States?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: To answer the question, we need to join the `car_makers` table with the `countries` table to get the country information for each car maker, and then join the `model_list` table with the `car_names` table to get the model information. Finally, we filter the results to only include car makers from the United States.
+
+Here is the SQL query:
+```
+SELECT COUNT(*)
+FROM car_makers AS cm
+JOIN countries AS c ON cm.Country = c.CountryId
+JOIN model_list AS ml ON cm.Id = ml.Maker
+JOIN car_names AS cn ON ml.ModelId = cn.MakeId
+WHERE c.Continent = (SELECT ContId FROM continents WHERE Continent = 'United States')
+  - expected output: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the average miles per gallon(mpg) of the cars with 4 cylinders?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the average miles per gallon of all the cards with 4 cylinders?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such table: Performance, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Songs (
+  SongId number,
+  Title text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Albums (
+  AId number,
+  Title text,
+  Year number,
+  Label text,
+  Type text,
+  PRIMARY KEY (AId)
+);
+CREATE TABLE Band (
+  Id number,
+  Firstname text,
+  Lastname text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE Instruments (
+  SongId number,
+  BandmateId number,
+  Instrument text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Performance (
+  SongId number,
+  Bandmate number,
+  StagePosition text,
+  PRIMARY KEY (SongId)
+);
+CREATE TABLE Tracklists (
+  AlbumId number,
+  Position number,
+  SongId number,
+  PRIMARY KEY (AlbumId)
+);
+CREATE TABLE Vocals (
+  SongId number,
+  Bandmate number,
+  Type text,
+  PRIMARY KEY (SongId)
+);
+
+### QUESTION
+Who performed the song named "Le Pop"?
+
+### SQL
+SELECT T2.firstname ,  T2.lastname FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T3.Title  =  "Le Pop"
+
+### SCHEMA
+CREATE TABLE Customers (
+  Customer_ID number,
+  Customer_name text,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE Services (
+  Service_ID number,
+  Service_name text,
+  PRIMARY KEY (Service_ID)
+);
+CREATE TABLE Available_Policies (
+  Policy_ID number,
+  policy_type_code text,
+  Customer_Phone text,
+  PRIMARY KEY (Policy_ID)
+);
+CREATE TABLE Customers_Policies (
+  Customer_ID number,
+  Policy_ID number,
+  Date_Opened time,
+  Date_Closed time,
+  PRIMARY KEY (Customer_ID)
+);
+CREATE TABLE First_Notification_of_Loss (
+  FNOL_ID number,
+  Customer_ID number,
+  Policy_ID number,
+  Service_ID number,
+  PRIMARY KEY (FNOL_ID)
+);
+CREATE TABLE Claims (
+  Claim_ID number,
+  FNOL_ID number,
+  Effective_Date time,
+  PRIMARY KEY (Claim_ID)
+);
+CREATE TABLE Settlements (
+  Settlement_ID number,
+  Claim_ID number,
+  Effective_Date time,
+  Settlement_Amount number,
+  PRIMARY KEY (Settlement_ID)
+);
+
+### QUESTION
+Tell me the types of the policy used by the customer named "Dayana Robel".
+
+### SQL
+SELECT DISTINCT t3.policy_type_code FROM customers AS t1 JOIN customers_policies AS t2 ON t1.customer_id  =  t2.customer_id JOIN available_policies AS t3 ON t2.policy_id  =  t3.policy_id WHERE t1.customer_name  =  "Dayana Robel"
+
+### SCHEMA
+CREATE TABLE station (
+  id number,
+  name text,
+  lat number,
+  long number,
+  dock_count number,
+  city text,
+  installation_date text,
+  PRIMARY KEY (id)
+);
+CREATE TABLE status (
+  station_id number,
+  bikes_available number,
+  docks_available number,
+  time text
+);
+CREATE TABLE trip (
+  id number,
+  duration number,
+  start_date text,
+  start_station_name text,
+  start_station_id number,
+  end_date text,
+  end_station_name text,
+  end_station_id number,
+  bike_id number,
+  subscription_type text,
+  zip_code number,
+  PRIMARY KEY (id)
+);
+CREATE TABLE weather (
+  date text,
+  max_temperature_f number,
+  mean_temperature_f number,
+  min_temperature_f number,
+  max_dew_point_f number,
+  mean_dew_point_f number,
+  min_dew_point_f number,
+  max_humidity number,
+  mean_humidity number,
+  min_humidity number,
+  max_sea_level_pressure_inches number,
+  mean_sea_level_pressure_inches number,
+  min_sea_level_pressure_inches number,
+  max_visibility_miles number,
+  mean_visibility_miles number,
+  min_visibility_miles number,
+  max_wind_Speed_mph number,
+  mean_wind_speed_mph number,
+  max_gust_speed_mph number,
+  precipitation_inches number,
+  cloud_cover number,
+  events text,
+  wind_dir_degrees number,
+  zip_code number
+);
+
+### QUESTION
+What are the different ids and names of the stations that have had more than 12 bikes available?
+
+### SQL
+SELECT DISTINCT T1.id ,  T1.name FROM station AS T1 JOIN status AS T2 ON T1.id  =  T2.station_id WHERE T2.bikes_available  >  12
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the smallest weight of the car produced with 8 cylinders on 1974 ?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.firstname,  T2.lastname
+FROM Performance AS T1
+JOIN Band AS T2 ON T1.bandmate  =  T2.id
+JOIN Songs AS T3 ON T3.SongId  =  T1.SongId
+WHERE T3.Title  =  "Le Pop";
+  - expected output: select min(weight) from cars_data where cylinders  =  8 and year  =  1974
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 9.17% pass rate
+
+======================================================================
+
+Sending a large test run to Confident, this might take a bit longer than 
+usual...

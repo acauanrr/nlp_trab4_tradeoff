@@ -1,0 +1,5001 @@
+A saída de streaming foi truncada nas últimas 5000 linhas.
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE stadium (
+  Stadium_ID number,
+  Location text,
+  Name text,
+  Capacity number,
+  Highest number,
+  Lowest number,
+  Average number,
+  PRIMARY KEY (Stadium_ID)
+);
+CREATE TABLE singer (
+  Singer_ID number,
+  Name text,
+  Country text,
+  Song_Name text,
+  Song_release_year text,
+  Age number,
+  Is_male others,
+  PRIMARY KEY (Singer_ID)
+);
+CREATE TABLE concert (
+  concert_ID number,
+  concert_Name text,
+  Theme text,
+  Stadium_ID text,
+  Year text,
+  PRIMARY KEY (concert_ID)
+);
+CREATE TABLE singer_in_concert (
+  concert_ID number,
+  Singer_ID text,
+  PRIMARY KEY (concert_ID)
+);
+
+### QUESTION
+What are the number of concerts that occurred in the stadium with the largest capacity ?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM concert WHERE stadium_id  =  (SELECT stadium_id FROM stadium ORDER BY capacity DESC LIMIT 1)
+  - expected output: select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)
+  - context: ['concert_singer']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the number of pets whose weight is heavier than 10.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM Pets WHERE weight  >  10
+  - expected output: SELECT count(*) FROM pets WHERE weight  >  10
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+How many pets have a greater weight than 10?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM Pets WHERE weight  >  10
+  - expected output: SELECT count(*) FROM pets WHERE weight  >  10
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the weight of the youngest dog.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT weight FROM Pets WHERE pettype  =  'dog' ORDER BY pet_age LIMIT 1
+  - expected output: SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(13.4,)}, Esperado: {(9.3,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+How much does the youngest dog weigh?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT max(weight) FROM Pets WHERE PetType  =  'dog'
+  - expected output: SELECT weight FROM pets ORDER BY pet_age LIMIT 1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the maximum weight for each type of pet. List the maximum weight and pet type.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT max(weight),  pettype FROM Pets GROUP BY pettype
+  - expected output: SELECT max(weight) ,  petType FROM pets GROUP BY petType
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+List the maximum weight and type for each type of pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT max(weight),  pettype FROM Pets GROUP BY pettype
+  - expected output: SELECT max(weight) ,  petType FROM pets GROUP BY petType
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find number of pets owned by students who are older than 20.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM has_pet AS T1 JOIN pets AS T2 ON T1.petid  =  T2.petid JOIN student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.age  >  20
+  - expected output: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+How many pets are owned by students that have an age greater than 20?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM has_pet AS T1 JOIN pets AS T2 ON T1.petid  =  T2.petid JOIN student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.age  >  20
+  - expected output: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the number of dog pets that are raised by female students (with sex F).
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.petid  =  T2.petid JOIN Student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.sex  =  "F" AND T2.pettype  =  "dog"
+  - expected output: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+How many dog pets are raised by female students?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.petid  =  T2.petid JOIN Student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.sex  =  "F" AND T2.pettype  =  "dog"
+  - expected output: SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the number of distinct type of pets.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(DISTINCT pettype) FROM pets
+  - expected output: SELECT count(DISTINCT pettype) FROM pets
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+How many different types of pet are there?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(DISTINCT pettype) FROM pets
+  - expected output: SELECT count(DISTINCT pettype) FROM pets
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the first name of students who have cat or dog pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.StuID  =  T2.StuID JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  "cat" OR T3.pettype  =  "dog"
+  - expected output: SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What are the first names of every student who has a cat or dog as a pet?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+  - expected output: SELECT DISTINCT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' OR T3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the first name of students who have both cat and dog pets .
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID JOIN Pets AS T3 ON T2.PetID  =  T3.PetID WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID JOIN Pets AS T3 ON T2.PetID  =  T3.PetID WHERE T3.pettype  =  'dog'
+  - expected output: select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'cat' intersect select t1.fname from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid join pets as t3 on t3.petid  =  t2.petid where t3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What are the students' first names who have both cats and dogs as pets?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'dog'
+  - expected output: SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat' INTERSECT SELECT T1.Fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(600, 19)}, Esperado: {(50, 18), (600, 18), (600, 21), (600, 27), (520, 19), (550, 20), (520, 22), (540, 18), (600, 20), (600, 17), (50, 26), (600, 26), (520, 18), (540, 17), (100, 17), (600, 16), (600, 19), (600, 22), (550, 21), (550, 18), (520, 20)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the major and age of students who do not have a cat pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Major,  T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID EXCEPT SELECT T1.Major,  T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID JOIN Pets AS T3 ON T2.PetID  =  T3.PetID WHERE T3.pettype  =  'cat'
+  - expected output: SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Major, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What major is every student who does not own a cat as a pet, and also how old are they?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Lname,  T1.Fname,  T1.age,  T2.Major FROM Student AS T1 JOIN Has_Pet AS T3 ON T1.StuID  =  T3.StuID JOIN Pets AS T2 ON T3.PetID  =  T2.PetID WHERE T2.pettype!= 'cat'
+  - expected output: SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(1002,)}, Esperado: {(1018,), (1015,), (1021,), (1027,), (1024,), (1030,), (1033,), (1002,), (1008,), (1005,), (1011,), (1014,), (1020,), (1017,), (1023,), (1026,), (1032,), (1029,), (1035,), (1004,), (1007,), (1010,), (1016,), (1019,), (1025,), (1022,), (1028,), (1034,), (1031,), (1006,), (1003,), (1009,), (1012,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the id of students who do not have a cat pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT StuID FROM Has_Pet EXCEPT SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType  =  'cat')
+  - expected output: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(1002,)}, Esperado: {(1018,), (1015,), (1021,), (1027,), (1024,), (1030,), (1033,), (1002,), (1008,), (1005,), (1011,), (1014,), (1020,), (1017,), (1023,), (1026,), (1032,), (1029,), (1035,), (1004,), (1007,), (1010,), (1016,), (1019,), (1025,), (1022,), (1028,), (1034,), (1031,), (1006,), (1003,), (1009,), (1012,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What are the ids of the students who do not own cats as pets?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.StuID FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.petid  =  T2.petid WHERE T2.pettype!= "cat"
+  - expected output: SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the first name and age of students who have a dog but do not have a cat as a pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.fname,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'dog' EXCEPT SELECT T1.fname,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'cat'
+  - expected output: SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('Tracy',)}, Esperado: {('Tracy', 19)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the first name of every student who has a dog but does not have a cat?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'dog' EXCEPT SELECT T1.fname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  'cat'
+  - expected output: SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the type and weight of the youngest pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT pettype,  weight FROM pets ORDER BY pet_age LIMIT 1
+  - expected output: SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What type of pet is the youngest animal, and how much does it weigh?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.pettype,  T1.weight FROM pets AS T1 JOIN has_pet AS T2 ON T1.petid  =  T2.petid ORDER BY T1.pet_age LIMIT 1
+  - expected output: SELECT pettype ,  weight FROM pets ORDER BY pet_age LIMIT 1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the id and weight of all pets whose age is older than 1.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT petid,  weight FROM Pets WHERE pet_age  >  1
+  - expected output: SELECT petid ,  weight FROM pets WHERE pet_age  >  1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the id and weight of every pet who is older than 1?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT petid,  weight FROM Pets WHERE pet_age  >  1
+  - expected output: SELECT petid ,  weight FROM pets WHERE pet_age  >  1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('dog', 1.5, 2), ('cat', 3.0, 3)}, Esperado: {(3.0, 3, 'cat'), (1.5, 2, 'dog')}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the average and maximum age for each type of pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT pettype,  avg(pet_age),  max(pet_age) FROM pets GROUP BY pettype
+  - expected output: SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('dog', 1.5, 2), ('cat', 3.0, 3)}, Esperado: {(3.0, 3, 'cat'), (1.5, 2, 'dog')}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the average and maximum age for each pet type?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT pettype,  avg(pet_age),  max(pet_age) FROM pets GROUP BY pettype
+  - expected output: SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('cat', 12.0), ('dog', 11.350000000000001)}, Esperado: {(12.0, 'cat'), (11.350000000000001, 'dog')}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the average weight for each pet type.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT pettype,  avg(weight) FROM pets GROUP BY pettype
+  - expected output: SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('cat', 12.0), ('dog', 11.350000000000001)}, Esperado: {(12.0, 'cat'), (11.350000000000001, 'dog')}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the average weight for each type of pet?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT pettype,  avg(weight) FROM pets GROUP BY pettype
+  - expected output: SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the first name and age of students who have a pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Fname,  T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID
+  - expected output: SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What are the different first names and ages of the students who do have pets?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT DISTINCT T1.Fname,  T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID
+  - expected output: SELECT DISTINCT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the id of the pet owned by student whose last name is ‘Smith’.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.petid FROM has_pet AS T1 JOIN pets AS T2 ON T1.petid  =  T2.petid JOIN student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.lname  =  'Smith'
+  - expected output: SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the id of the pet owned by the student whose last name is 'Smith'?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.petid FROM has_pet AS T1 JOIN pets AS T2 ON T1.petid  =  T2.petid JOIN student AS T3 ON T1.stuid  =  T3.stuid WHERE T3.lname  =  'Smith'
+  - expected output: SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(1002, 2), (1001, 1)}, Esperado: {(1, 1001), (2, 1002)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the number of pets for each student who has any pet and student id.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.stuid,  count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.petid  =  T2.petid GROUP BY T1.stuid
+  - expected output: SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(1002, 2), (1001, 1)}, Esperado: {(1, 1001), (2, 1002)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+For students who have pets , how many pets does each student have ? list their ids instead of names .
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.stuid,  count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.petid  =  T2.petid GROUP BY T1.stuid
+  - expected output: select count(*) ,  t1.stuid from student as t1 join has_pet as t2 on t1.stuid  =  t2.stuid group by t1.stuid
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the first name and gender of student who have more than one pet.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Fname,  T1.sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID GROUP BY T2.StuID HAVING count(*)  >  1
+  - expected output: SELECT T1.fname ,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the first name and gender of the all the students who have more than one pet?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.fname,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1
+  - expected output: SELECT T1.fname ,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the last name of the student who has a cat that is age 3.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Lname FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID  =  T2.StuID JOIN Pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  "cat" AND T3.pet_age  =  3
+  - expected output: SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the last name of the student who has a cat that is 3 years old?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Lname FROM student AS T1 JOIN has_pet AS T2 ON T1.StuID  =  T2.StuID JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T3.pettype  =  "cat" AND T3.pet_age  =  3
+  - expected output: SELECT T1.lname FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pet_age  =  3 AND T3.pettype  =  'cat'
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+Find the average age of students who do not have any pet .
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT avg(age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)
+  - expected output: select avg(age) from student where stuid not in (select stuid from has_pet)
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE Student (
+  StuID number,
+  LName text,
+  Fname text,
+  Age number,
+  Sex text,
+  Major number,
+  Advisor number,
+  city_code text,
+  PRIMARY KEY (StuID)
+);
+CREATE TABLE Has_Pet (
+  StuID number,
+  PetID number
+);
+CREATE TABLE Pets (
+  PetID number,
+  PetType text,
+  pet_age number,
+  weight number,
+  PRIMARY KEY (PetID)
+);
+
+### QUESTION
+What is the average age for all students who do not own any pets ?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT avg(age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)
+  - expected output: select avg(age) from student where stuid not in (select stuid from has_pet)
+  - context: ['pets_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many continents are there?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM continents
+  - expected output: SELECT count(*) FROM CONTINENTS;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the number of continents?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM continents
+  - expected output: SELECT count(*) FROM CONTINENTS;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(4, 2), (2, 6), (3, 2), (1, 3), (5, 2)}, Esperado: {(2, 'europe', 6), (1, 'america', 3), (5, 'australia', 2), (3, 'asia', 2), (4, 'africa', 2)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many countries does each continent have? List the continent id, continent name and the number of countries.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT continent,  count(*) FROM countries GROUP BY continent
+  - expected output: SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.ContinentId, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+For each continent, list its id, name, and how many countries it has?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Continent,  count(*) FROM continents AS T1 JOIN countries AS T2 ON T1.ContId  =  T2.ContinentId GROUP BY T1.Continent
+  - expected output: SELECT T1.ContId ,  T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.Continent GROUP BY T1.ContId;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many countries are listed?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM countries
+  - expected output: SELECT count(*) FROM COUNTRIES;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many countries exist?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM countries
+  - expected output: SELECT count(*) FROM COUNTRIES;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {('bmw', 3, 1), ('citroen', 7, 1), ('mazda', 12, 1), ('fiat', 9, 1), ('volvo', 21, 1), ('kia', 22, 1), ('nissan', 8, 2), ('saab', 17, 1), ('subaru', 18, 1), ('volkswagen', 2, 2), ('hyundai', 23, 1), ('opel', 14, 1), ('gm', 4, 5), ('amc', 1, 1), ('triumph', 20, 1), ('peugeaut', 15, 1), ('toyota', 19, 2), ('daimler benz', 13, 2), ('ford', 5, 3), ('honda', 11, 1), ('renault', 16, 1), ('chrysler', 6, 4)}, Esperado: {('Kia Motors', 22, 1), ('Toyota', 19, 2), ('Honda', 11, 1), ('Ford Motor Company', 5, 3), ('Mazda', 12, 1), ('Peugeaut', 15, 1), ('Triumph', 20, 1), ('Hyundai', 23, 1), ('American Motor Company', 1, 1), ('Volvo', 21, 1), ('General Motors', 4, 5), ('Subaru', 18, 1), ('Chrysler', 6, 4), ('Nissan Motors', 8, 2), ('Volkswagen', 2, 2), ('Fiat', 9, 1), ('Daimler Benz', 13, 2), ('Opel', 14, 1), ('Saab', 17, 1), ('Citroen', 7, 1), ('BMW', 3, 1), ('Renault', 16, 1)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many models does each car maker produce? List maker full name, id and the number.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Maker,  T1.Id,  count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Maker
+  - expected output: SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(8, 'nissan', 2), (9, 'fiat', 1), (14, 'opel', 1), (17, 'saab', 1), (12, 'mazda', 1), (19, 'toyota', 2), (23, 'hyundai', 1), (18, 'subaru', 1), (1, 'amc', 1), (15, 'peugeaut', 1), (21, 'volvo', 1), (5, 'ford', 3), (4, 'gm', 5), (16, 'renault', 1), (3, 'bmw', 1), (6, 'chrysler', 4), (20, 'triumph', 1), (11, 'honda', 1), (13, 'daimler benz', 2), (22, 'kia', 1), (7, 'citroen', 1), (2, 'volkswagen', 2)}, Esperado: {('Kia Motors', 22, 1), ('Toyota', 19, 2), ('Honda', 11, 1), ('Ford Motor Company', 5, 3), ('Mazda', 12, 1), ('Peugeaut', 15, 1), ('Triumph', 20, 1), ('Hyundai', 23, 1), ('American Motor Company', 1, 1), ('Volvo', 21, 1), ('General Motors', 4, 5), ('Subaru', 18, 1), ('Chrysler', 6, 4), ('Nissan Motors', 8, 2), ('Volkswagen', 2, 2), ('Fiat', 9, 1), ('Daimler Benz', 13, 2), ('Opel', 14, 1), ('Saab', 17, 1), ('Citroen', 7, 1), ('BMW', 3, 1), ('Renault', 16, 1)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the full name of each car maker, along with its id and how many models it produces?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.id,  T1.maker,  count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id  =  T2.maker GROUP BY T1.id
+  - expected output: SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Which model of the car has the minimum horsepower?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Maker  =  T2.Maker WHERE T2.Horsepower  =  (SELECT min(Horsepower) FROM cars_data)
+  - expected output: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the model of the car with the smallest amount of horsepower?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Maker  =  T2.Maker ORDER BY Horsepower LIMIT 1
+  - expected output: SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Find the model of the car whose weight is below the average weight.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Maker  =  T2.Maker WHERE T2.Weight  <  (SELECT avg(Weight) FROM cars_data)
+  - expected output: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the model for the car with a weight smaller than the average?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Maker  =  T2.Maker WHERE T2.Weight  <  (SELECT avg(Weight) FROM cars_data)
+  - expected output: SELECT T1.model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Weight  <  (SELECT avg(Weight) FROM CARS_DATA)
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T3.Model, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Find the name of the makers that produced some cars in the year of 1970?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id  =  T2.Maker JOIN cars_data AS T3 ON T2.Model  =  T3.Model WHERE T3.year  =  1970
+  - expected output: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.make_id, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of the different car makers who produced a car in 1970?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT DISTINCT T1.Maker FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.id  =  T2.make_id WHERE T2.year  =  1970
+  - expected output: SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Make, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Find the make and production time of the cars that were produced in the earliest year?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Make,  T2.Year FROM car_names AS T1 JOIN cars_data AS T2 ON T1.Make  =  T2.Make ORDER BY T2.Year LIMIT 1
+  - expected output: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.make_id, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the maker of the carr produced in the earliest year and what year was it?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Maker,  T2.Year FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.id  =  T2.make_id ORDER BY T2.year LIMIT 1
+  - expected output: SELECT T2.Make ,  T1.Year FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Year  =  (SELECT min(YEAR) FROM CARS_DATA);
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Maker, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Which distinct car models are the produced after 1980?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN cars_data AS T2 ON T1.Maker  =  T2.Maker WHERE T2.Year  >  1980
+  - expected output: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Make, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What are the different models for the cards produced after 1980?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT DISTINCT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.Make  =  T2.Make WHERE T2.Year  >  1980
+  - expected output: SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.ContinentId, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car makers are there in each continents? List the continent name and the count.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Continent,  count(*) FROM continents AS T1 JOIN countries AS T2 ON T1.ContId  =  T2.ContinentId GROUP BY T1.Continent
+  - expected output: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.ContinentId, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of each continent and how many car makers are there in each one?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Continent,  count(*) FROM continents AS T1 JOIN countries AS T2 ON T1.ContId  =  T2.ContinentId JOIN car_makers AS T3 ON T2.CountryName  =  T3.Country GROUP BY T1.Continent
+  - expected output: SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: misuse of aggregate: count(), error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+Which of the countries has the most car makers? List the country name.
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId  =  T2.Country ORDER BY count(*) DESC LIMIT 1
+  - expected output: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the name of the country with the most car makers?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T2.CountryName FROM car_makers AS T1 JOIN countries AS T2 ON T1.Country  =  T2.CountryId GROUP BY T2.CountryName ORDER BY count(*) DESC LIMIT 1
+  - expected output: SELECT T2.CountryName FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId GROUP BY T1.Country ORDER BY Count(*) DESC LIMIT 1;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(5, 4), (4, 6), (2, 2), (1, 3), (1, 9), (2, 8), (1, 12), (1, 18), (1, 15), (1, 21), (1, 11), (1, 14), (1, 20), (2, 13), (2, 19), (1, 17), (1, 23), (3, 5), (1, 1), (1, 7), (1, 16), (1, 22)}, Esperado: {(3, 'Ford Motor Company'), (1, 'Honda'), (1, 'Saab'), (1, 'Volvo'), (1, 'Citroen'), (2, 'Nissan Motors'), (1, 'Subaru'), (1, 'Renault'), (2, 'Toyota'), (5, 'General Motors'), (1, 'BMW'), (1, 'Kia Motors'), (1, 'Opel'), (4, 'Chrysler'), (2, 'Volkswagen'), (1, 'Fiat'), (1, 'Mazda'), (1, 'Triumph'), (2, 'Daimler Benz'), (1, 'Peugeaut'), (1, 'American Motor Company'), (1, 'Hyundai')}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car models are produced by each maker ? Only list the count and the maker full name .
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*),  T1.Maker FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker  =  T2.Id GROUP BY T1.Maker
+  - expected output: select count(*) ,  t2.fullname from model_list as t1 join car_makers as t2 on t1.maker  =  t2.id group by t2.id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(8, 'nissan', 2), (9, 'fiat', 1), (14, 'opel', 1), (17, 'saab', 1), (12, 'mazda', 1), (19, 'toyota', 2), (23, 'hyundai', 1), (18, 'subaru', 1), (1, 'amc', 1), (15, 'peugeaut', 1), (21, 'volvo', 1), (5, 'ford', 3), (4, 'gm', 5), (16, 'renault', 1), (3, 'bmw', 1), (6, 'chrysler', 4), (20, 'triumph', 1), (11, 'honda', 1), (13, 'daimler benz', 2), (22, 'kia', 1), (7, 'citroen', 1), (2, 'volkswagen', 2)}, Esperado: {(1, 'Peugeaut', 15), (1, 'BMW', 3), (1, 'Volvo', 21), (1, 'Hyundai', 23), (1, 'Renault', 16), (1, 'Opel', 14), (1, 'Saab', 17), (5, 'General Motors', 4), (4, 'Chrysler', 6), (1, 'Fiat', 9), (1, 'Honda', 11), (2, 'Volkswagen', 2), (1, 'American Motor Company', 1), (2, 'Daimler Benz', 13), (1, 'Mazda', 12), (3, 'Ford Motor Company', 5), (2, 'Nissan Motors', 8), (1, 'Subaru', 18), (1, 'Kia Motors', 22), (1, 'Citroen', 7), (1, 'Triumph', 20), (2, 'Toyota', 19)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the number of car models that are produced by each maker and what is the id and full name of each maker?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT T1.Maker,  T2.Maker,  count(*) FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.Maker
+  - expected output: SELECT Count(*) ,  T2.FullName ,  T2.id FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id GROUP BY T2.id;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Erro ao executar a query gerada: no such column: T2.Make, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the accelerate of the car make amc hornet sportabout (sw)?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT accelerate FROM car_names AS T1 JOIN cars_data AS T2 ON T1.Make  =  T2.Make WHERE T1.Model  =  "AMC Hornet Sportabout"
+  - expected output: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: set(), Esperado: {(13.5,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How much does the car accelerate that makes amc hornet sportabout (sw)?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT accelerate FROM cars_data AS T1 JOIN car_names AS T2 ON T1.id  =  T2.makeid WHERE T2.model  =  "AMC Hornet Sportabout"
+  - expected output: SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(3,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car makers are there in france?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM car_makers WHERE country  =  'France'
+  - expected output: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(3,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the number of makers of care in France?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM car_makers WHERE country  =  'France'
+  - expected output: SELECT count(*) FROM CAR_MAKERS AS T1 JOIN COUNTRIES AS T2 ON T1.Country  =  T2.CountryId WHERE T2.CountryName  =  'france';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(13,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+How many car models are produced in the usa?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id  =  T2.maker WHERE T1.country  =  "USA"
+  - expected output: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ❌ Execution Accuracy (score: 0.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados divergem. Gerado: {(0,)}, Esperado: {(13,)}, error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the count of the car models produced in the United States?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT count(*) FROM car_makers AS T1 JOIN model_list AS T2 ON T1.id  =  T2.maker WHERE T1.country  =  "United States"
+  - expected output: SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the average miles per gallon(mpg) of the cars with 4 cylinders?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT avg(mpg) FROM cars_data WHERE Cylinders  =  4
+  - expected output: SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the average miles per gallon of all the cards with 4 cylinders?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT avg(mpg) FROM cars_data WHERE cylinders  =  4
+  - expected output: SELECT avg(mpg) FROM CARS_DATA WHERE Cylinders  =  4;
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+
+======================================================================
+
+Metrics Summary
+
+  - ✅ Execution Accuracy (score: 1.0, threshold: 1.0, strict: False, evaluation model: None, reason: Resultados idênticos., error: None)
+
+For test case:
+
+  - input: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+### INSTRUCTION
+Given the database schema below, write a SQL query that answers the following question.
+
+### SCHEMA
+CREATE TABLE continents (
+  ContId number,
+  Continent text,
+  PRIMARY KEY (ContId)
+);
+CREATE TABLE countries (
+  CountryId number,
+  CountryName text,
+  Continent number,
+  PRIMARY KEY (CountryId)
+);
+CREATE TABLE car_makers (
+  Id number,
+  Maker text,
+  FullName text,
+  Country text,
+  PRIMARY KEY (Id)
+);
+CREATE TABLE model_list (
+  ModelId number,
+  Maker number,
+  Model text,
+  PRIMARY KEY (ModelId)
+);
+CREATE TABLE car_names (
+  MakeId number,
+  Model text,
+  Make text,
+  PRIMARY KEY (MakeId)
+);
+CREATE TABLE cars_data (
+  Id number,
+  MPG text,
+  Cylinders number,
+  Edispl number,
+  Horsepower text,
+  Weight number,
+  Accelerate number,
+  Year number,
+  PRIMARY KEY (Id)
+);
+
+### QUESTION
+What is the smallest weight of the car produced with 8 cylinders on 1974 ?
+
+### SQL<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+
+  - actual output: SELECT min(Weight) FROM cars_data WHERE Cylinders  =  8 AND YEAR  =  1974
+  - expected output: select min(weight) from cars_data where cylinders  =  8 and year  =  1974
+  - context: ['car_1']
+  - retrieval context: None
+
+======================================================================
+
+Overall Metric Pass Rates
+
+Execution Accuracy: 60.83% pass rate
+
+======================================================================
+
+Sending a large test run to Confident, this might take a bit longer than 
+usual...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/deepeval/test_run/test_run.py", line 799, in post_test_run
+    result = api.send_request(
+             ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/deepeval/confident/api.py", line 145, in send_request
+    raise Exception(res.json().get("error", res.text))
+Exception: Internal Server Error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/content/nlp_trab4_tradeoff/scripts/eval_spider.py", line 179, in <module>
+    create_and_run_evaluation()
+  File "/content/nlp_trab4_tradeoff/scripts/eval_spider.py", line 172, in create_and_run_evaluation
+    evaluate(cases,[metric])
+  File "/usr/local/lib/python3.11/dist-packages/deepeval/evaluate/evaluate.py", line 322, in evaluate
+    confident_link = global_test_run_manager.wrap_up_test_run(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/deepeval/test_run/test_run.py", line 882, in wrap_up_test_run
+    return self.post_test_run(test_run)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/deepeval/test_run/test_run.py", line 806, in post_test_run
+    raise Exception(message) from e
+Exception: Unexpected error when sending some test cases. Incomplete test run available at https://app.confident-ai.com/project/cmc4a3drk04mimat6u7s2m071/evaluation/test-runs/cmc8qjw3k00wkcxadmk1qrkch/compare-test-results

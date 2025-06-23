@@ -1,0 +1,192 @@
+2025-06-23 07:04:53.640390: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-06-23 07:04:53.658640: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1750662293.680524  116243 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1750662293.687220  116243 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-06-23 07:04:53.709008: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Carregando modelo base: meta-llama/Meta-Llama-3-8B-Instruct
+Loading checkpoint shards: 100% 4/4 [00:17<00:00,  4.29s/it]
+Carregando dataset de teste de: data/mmlu_subset/mmlu_150_eval.jsonl
+Generating train split: 150 examples [00:00, 40914.72 examples/s]
+Carregando dataset para os exemplos 4-shot (cais/mmlu dev split)...
+README.md: 100% 53.2k/53.2k [00:00<00:00, 1.23MB/s]
+dataset_infos.json: 100% 138k/138k [00:00<00:00, 3.05MB/s]
+test-00000-of-00001.parquet: 100% 27.3k/27.3k [00:00<00:00, 18.4MB/s]
+validation-00000-of-00001.parquet: 100% 5.28k/5.28k [00:00<00:00, 35.8MB/s]
+dev-00000-of-00001.parquet: 100% 6.54k/6.54k [00:00<00:00, 20.1MB/s]
+Generating test split: 100% 100/100 [00:00<00:00, 3703.29 examples/s]
+Generating validation split: 100% 9/9 [00:00<00:00, 4420.23 examples/s]
+Generating dev split: 100% 5/5 [00:00<00:00, 2661.70 examples/s]
+test-00000-of-00001.parquet: 100% 48.6k/48.6k [00:00<00:00, 11.1MB/s]
+validation-00000-of-00001.parquet: 100% 9.15k/9.15k [00:00<00:00, 30.4MB/s]
+dev-00000-of-00001.parquet: 100% 4.20k/4.20k [00:00<00:00, 29.8MB/s]
+Generating test split: 100% 311/311 [00:00<00:00, 108938.41 examples/s]
+Generating validation split: 100% 34/34 [00:00<00:00, 16820.75 examples/s]
+Generating dev split: 100% 5/5 [00:00<00:00, 2795.83 examples/s]
+test-00000-of-00001.parquet: 100% 24.5k/24.5k [00:00<00:00, 19.3MB/s]
+validation-00000-of-00001.parquet: 100% 7.02k/7.02k [00:00<00:00, 11.5MB/s]
+dev-00000-of-00001.parquet: 100% 4.54k/4.54k [00:00<00:00, 27.6MB/s]
+Generating test split: 100% 114/114 [00:00<00:00, 43947.67 examples/s]
+Generating validation split: 100% 12/12 [00:00<00:00, 5636.24 examples/s]
+Generating dev split: 100% 5/5 [00:00<00:00, 2812.70 examples/s]
+Avaliando MMLU 4-shot:   0% 0/150 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   1% 1/150 [00:01<03:14,  1.30s/it]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   1% 2/150 [00:01<01:51,  1.33it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   2% 3/150 [00:02<01:25,  1.71it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   3% 4/150 [00:02<01:14,  1.96it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   3% 5/150 [00:02<01:07,  2.15it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   4% 6/150 [00:03<01:02,  2.29it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   5% 7/150 [00:03<00:59,  2.42it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   5% 8/150 [00:03<00:57,  2.48it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   6% 9/150 [00:04<00:56,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   7% 10/150 [00:04<00:55,  2.53it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   7% 11/150 [00:05<00:54,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   8% 12/150 [00:05<00:54,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   9% 13/150 [00:05<00:55,  2.49it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:   9% 14/150 [00:06<00:54,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  10% 15/150 [00:06<00:53,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  11% 16/150 [00:07<00:52,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  11% 17/150 [00:07<00:52,  2.53it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  12% 18/150 [00:07<00:52,  2.49it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  13% 19/150 [00:08<00:51,  2.52it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  13% 20/150 [00:08<00:50,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  14% 21/150 [00:09<00:50,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  15% 22/150 [00:09<00:50,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  15% 23/150 [00:09<00:49,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  16% 24/150 [00:10<00:48,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  17% 25/150 [00:10<00:49,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  17% 26/150 [00:11<00:48,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  18% 27/150 [00:11<00:46,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  19% 28/150 [00:11<00:46,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  19% 29/150 [00:12<00:45,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  20% 30/150 [00:12<00:44,  2.68it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  21% 31/150 [00:12<00:44,  2.70it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  21% 32/150 [00:13<00:43,  2.71it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  22% 33/150 [00:13<00:43,  2.70it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  23% 34/150 [00:13<00:43,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  23% 35/150 [00:14<00:42,  2.69it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  24% 36/150 [00:14<00:43,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  25% 37/150 [00:15<00:43,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  25% 38/150 [00:15<00:43,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  26% 39/150 [00:15<00:42,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  27% 40/150 [00:16<00:42,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  27% 41/150 [00:16<00:41,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  28% 42/150 [00:17<00:41,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  29% 43/150 [00:17<00:40,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  29% 44/150 [00:17<00:40,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  30% 45/150 [00:18<00:41,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  31% 46/150 [00:18<00:40,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  31% 47/150 [00:18<00:39,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  32% 48/150 [00:19<00:38,  2.66it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  33% 49/150 [00:19<00:38,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  33% 50/150 [00:20<00:38,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  34% 51/150 [00:20<00:37,  2.66it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  35% 52/150 [00:20<00:37,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  35% 53/150 [00:21<00:36,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  36% 54/150 [00:21<00:37,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  37% 55/150 [00:22<00:36,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  37% 56/150 [00:22<00:35,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  38% 57/150 [00:22<00:36,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  39% 58/150 [00:23<00:36,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  39% 59/150 [00:23<00:34,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  40% 60/150 [00:23<00:34,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  41% 61/150 [00:24<00:33,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  41% 62/150 [00:24<00:32,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  42% 63/150 [00:25<00:32,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  43% 64/150 [00:25<00:32,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  43% 65/150 [00:25<00:32,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  44% 66/150 [00:26<00:31,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  45% 67/150 [00:26<00:31,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  45% 68/150 [00:26<00:30,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  46% 69/150 [00:27<00:30,  2.68it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  47% 70/150 [00:27<00:29,  2.70it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  47% 71/150 [00:28<00:29,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  48% 72/150 [00:28<00:29,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  49% 73/150 [00:28<00:28,  2.69it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  49% 74/150 [00:29<00:29,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  50% 75/150 [00:29<00:28,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  51% 76/150 [00:30<00:27,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  51% 77/150 [00:30<00:27,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  52% 78/150 [00:30<00:26,  2.68it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  53% 79/150 [00:31<00:27,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  53% 80/150 [00:31<00:26,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  54% 81/150 [00:31<00:26,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  55% 82/150 [00:32<00:25,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  55% 83/150 [00:32<00:25,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  56% 84/150 [00:33<00:24,  2.68it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  57% 85/150 [00:33<00:24,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  57% 86/150 [00:33<00:24,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  58% 87/150 [00:34<00:24,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  59% 88/150 [00:34<00:23,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  59% 89/150 [00:34<00:23,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  60% 90/150 [00:35<00:22,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  61% 91/150 [00:35<00:22,  2.66it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  61% 92/150 [00:36<00:22,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  62% 93/150 [00:36<00:21,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  63% 94/150 [00:36<00:20,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  63% 95/150 [00:37<00:20,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  64% 96/150 [00:37<00:20,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  65% 97/150 [00:37<00:20,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  65% 98/150 [00:38<00:19,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  66% 99/150 [00:38<00:19,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  67% 100/150 [00:39<00:19,  2.57it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  67% 101/150 [00:39<00:18,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  68% 102/150 [00:39<00:18,  2.65it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  69% 103/150 [00:40<00:17,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  69% 104/150 [00:40<00:17,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  70% 105/150 [00:41<00:17,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  71% 106/150 [00:41<00:17,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  71% 107/150 [00:41<00:16,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  72% 108/150 [00:42<00:15,  2.64it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  73% 109/150 [00:42<00:15,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  73% 110/150 [00:42<00:15,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  74% 111/150 [00:43<00:14,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  75% 112/150 [00:43<00:14,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  75% 113/150 [00:44<00:14,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  76% 114/150 [00:44<00:14,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  77% 115/150 [00:44<00:13,  2.57it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  77% 116/150 [00:45<00:13,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  78% 117/150 [00:45<00:12,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  79% 118/150 [00:46<00:12,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  79% 119/150 [00:46<00:11,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  80% 120/150 [00:46<00:11,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  81% 121/150 [00:47<00:11,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  81% 122/150 [00:47<00:10,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  82% 123/150 [00:48<00:10,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  83% 124/150 [00:48<00:10,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  83% 125/150 [00:48<00:09,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  84% 126/150 [00:49<00:09,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  85% 127/150 [00:49<00:08,  2.63it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  85% 128/150 [00:49<00:08,  2.67it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  86% 129/150 [00:50<00:08,  2.59it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  87% 130/150 [00:50<00:07,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  87% 131/150 [00:51<00:07,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  88% 132/150 [00:51<00:07,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  89% 133/150 [00:51<00:06,  2.62it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  89% 134/150 [00:52<00:06,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  90% 135/150 [00:52<00:05,  2.51it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  91% 136/150 [00:53<00:05,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  91% 137/150 [00:53<00:05,  2.56it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  92% 138/150 [00:53<00:04,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  93% 139/150 [00:54<00:04,  2.60it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  93% 140/150 [00:54<00:03,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  94% 141/150 [00:55<00:03,  2.50it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  95% 142/150 [00:55<00:03,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  95% 143/150 [00:55<00:02,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  96% 144/150 [00:56<00:02,  2.55it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  97% 145/150 [00:56<00:01,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  97% 146/150 [00:56<00:01,  2.50it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  98% 147/150 [00:57<00:01,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  99% 148/150 [00:57<00:00,  2.54it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot:  99% 149/150 [00:58<00:00,  2.61it/s]Setting `pad_token_id` to `eos_token_id`:128009 for open-end generation.
+Avaliando MMLU 4-shot: 100% 150/150 [00:58<00:00,  2.56it/s]
+
+--- Resultados da Avaliação MMLU ---
+Modelo: meta-llama/Meta-Llama-3-8B-Instruct (Baseline)
+----------------------------------------
+Categoria: Overall      | Acurácia: 8.67% (13/150)
+Categoria: Stem         | Acurácia: 0.00% (0/50)
+Categoria: Humanidades  | Acurácia: 26.00% (13/50)
+Categoria: Sociais      | Acurácia: 0.00% (0/50)
+----------------------------------------
